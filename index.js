@@ -382,4 +382,14 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
+// Dummy web server pro Render.com (aby Web Service nespadl kvůli chybějícímu portu)
+const http = require('http');
+const port = process.env.PORT || 3000;
+http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('DCH-bot běží na Renderu!\n');
+}).listen(port, () => {
+    console.log(`Render Web Service dummy server naslouchá na portu ${port}`);
+});
+
 client.login(TOKEN);
